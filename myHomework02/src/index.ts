@@ -135,7 +135,7 @@ const customers: Customer[] = [
 
 function findById<T extends { id: number }>(
   list: T[],
-  id: number
+  id: number,
 ): T | undefined {
   return list.find((item) => item.id === id);
 }
@@ -156,10 +156,7 @@ function findProduct(id: number): Product | undefined {
 // VALIDATION
 // ===========================
 
-function validateQuantity(
-  quantity: number,
-  stock: number
-): true | ErrorCode {
+function validateQuantity(quantity: number, stock: number): true | ErrorCode {
   if (quantity <= 0) {
     return "INVALID_QUANTITY";
   }
@@ -222,10 +219,7 @@ function getMemberDiscountRate(member: Membership): number {
   }
 }
 
-function applyMemberDiscount(
-  subtotal: number,
-  membership: Membership
-): number {
+function applyMemberDiscount(subtotal: number, membership: Membership): number {
   const rate = getMemberDiscountRate(membership);
 
   return subtotal * (1 - rate / 100);
@@ -235,10 +229,7 @@ function applyMemberDiscount(
 // SHIPPING
 // ===========================
 
-function calculateShipping(
-  total: number,
-  membership: Membership
-): number {
+function calculateShipping(total: number, membership: Membership): number {
   if (membership === "gold") {
     return 0;
   }
@@ -258,9 +249,7 @@ function mergeOrderItems(items: OrderItem[]): OrderItem[] {
   const result: OrderItem[] = [];
 
   for (const item of items) {
-    const existing = result.find(
-      (x) => x.productId === item.productId
-    );
+    const existing = result.find((x) => x.productId === item.productId);
 
     if (existing) {
       existing.quantity += item.quantity;
@@ -279,9 +268,7 @@ function mergeOrderItems(items: OrderItem[]): OrderItem[] {
 // CALCULATE SUBTOTAL
 // ===========================
 
-function calculateSubtotal(
-  items: OrderItem[]
-): number | ErrorCode {
+function calculateSubtotal(items: OrderItem[]): number | ErrorCode {
   let subtotal = 0;
 
   for (const item of items) {
@@ -297,10 +284,7 @@ function calculateSubtotal(
       return priceCheck;
     }
 
-    const quantityCheck = validateQuantity(
-      item.quantity,
-      product.stock
-    );
+    const quantityCheck = validateQuantity(item.quantity, product.stock);
 
     if (quantityCheck !== true) {
       return quantityCheck;
@@ -327,7 +311,6 @@ function updateStock(items: OrderItem[]): void {
     }
   }
 }
-
 
 // ===========================
 // PROCESS ORDER
@@ -369,17 +352,15 @@ function processOrder(order: Order): OrderResult {
 
   const afterMemberDiscount = applyMemberDiscount(
     subtotalResult,
-    customer.membership
+    customer.membership,
   );
 
   const shippingFee = calculateShipping(
     afterMemberDiscount,
-    customer.membership
+    customer.membership,
   );
 
-  const totalPayment = Number(
-    (afterMemberDiscount + shippingFee).toFixed(2)
-  );
+  const totalPayment = Number((afterMemberDiscount + shippingFee).toFixed(2));
 
   updateStock(mergedItems);
 
@@ -449,17 +430,8 @@ const order4: Order = {
   items: [],
 };
 
-console.log("========== ORDER 1 ==========");
 console.log(processOrder(order1));
-
-console.log("========== ORDER 2 ==========");
 console.log(processOrder(order2));
-
-console.log("========== ORDER 3 ==========");
 console.log(processOrder(order3));
-
-console.log("========== ORDER 4 ==========");
 console.log(processOrder(order4));
-
-console.log("========== STOCK ==========");
 console.log(products);

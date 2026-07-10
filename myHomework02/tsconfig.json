@@ -7,16 +7,16 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
+    // "module": "nodenext",
     "target": "esnext",
     "types": [],
     // For nodejs:
-    // "lib": ["esnext"],
+    "lib": ["esnext", "DOM"],
     // "types": ["node"],
     // and npm install -D @types/node
 
     // Other Outputs
-    "sourceMap": true,
+    // "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
 
@@ -38,7 +38,10 @@
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
+    // "moduleDetection": "force",
     "skipLibCheck": true,
+    "noEmitOnError": true, // recommended loi trc khi bien dich sang js
+    "noImplicitAny": true, // recommended loi mac dinh any
+    "strictNullChecks": true 
   }
 }
