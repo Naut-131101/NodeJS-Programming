@@ -17,16 +17,13 @@
 // let account: Account = {
 //   id: 1,
 //   username: "Tuan",
-// //   isAdmin: true
-// }; // Đối tượng account thiếu (property bắt buộc trong type Account) isAdmin nên lỗi
+// }; 
+// // Đối tượng account thiếu (property bắt buộc trong type Account) isAdmin nên lỗi
 
 // // NOTE: Bài tập 3
-// type Tuple = [number, string, number];
-
-// // let product: Tuple = [1, "Laptop", 25000000];
-// let product: Tuple = [1, 25000000, "Laptop"];
-// // 25000000: Type 'number' khong khop voi type 'string' cua Tuple. 
-// // "Laptop": Type 'string' khong khop voi type 'number' cua Tuple.
+// type Product = [id: number, name: string, price: number];
+// const product: Product = ["Laptop", 1, 1000];
+// // Lỗi: Type 'string' is not assignable to type 'number'.
 
 // // NOTE: Bài tập 4
 // enum OrderStatus {
@@ -37,19 +34,12 @@
 // }
 
 // let status: OrderStatus;
-// // status = OrderStatus.Shipped;
 // status = "Done";
 // // Type 'Done' khong khop voi type trong 'OrderStatus'.
 
 // // NOTE: Bài tập 5
-// // function computeTotal(price: number, tax: number): number {
-// //   return price + tax;
-// // }
-
-// function computeTotal(price: number, tax: number): number {
-//   console.log(price + tax);
-// }
-// // A function whose declared type is neither 'undefined', 'void', nor 'any' must return a value.
+// function computeTotal(price: number, tax: number): number {}
+// // "Function lacks ending return statement and return type does not include 'undefined'."
 
 // // NOTE: Bài tập 6
 // function log(value) {
@@ -57,14 +47,13 @@
 // }
 // // Parameter 'value' implicitly has an 'any' type.
 
-// // function log(value: number): void {
-// //   console.log(value);
-// // }
+// function log(value: number): void {
+//   console.log(value);
+// }
 
 // // NOTE: Bài tập 7
 // function greet(name: string) {
 //   let age = 20;
-
 //   console.log("Hello");
 // }
 // // 'name' is declared but its value is never read.
@@ -72,8 +61,7 @@
 
 // // NOTE: Bài tập 8
 // let amounts: number[] = [200, 400, 600];
-
-// amounts[1] = "100"; // Type 'string' is not assignable to type 'number'.
+// amounts[1] = "300"; // Type 'string' is not assignable to type 'number'.
 
 // // NOTE: Bài tập 9
 // type Employee = {
@@ -90,8 +78,7 @@
 //   },
 // };
 
-// // employee.retired(new Date("01-01-2025"));
-// // employee.retired(); // Expected 1 arguments, but got 0. An argument for 'date' was not provided.
+// employee.retired(); // Expected 1 arguments, but got 0. An argument for 'date' was not provided.
 // employee.retired(new Date("01-01-2025"));
 
 // NOTE: Bài tập 10
@@ -126,15 +113,12 @@ const john: Employee = {
   name: "John Doe",
   department: "IT",
   email: "john@gmail.com",
-
   address: {
     street: "123 Nguyen Trai",
     city: "Ho Chi Minh",
     country: "Vietnam",
   },
-
   baseSalary: 100000,
-
   isActive: true,
 
   computeSalary(hours, overtimeHours = 0) {
@@ -162,5 +146,6 @@ const john: Employee = {
 console.log(john.getInfo());
 console.log("Salary:", john.computeSalary(8));
 console.log("Salary OT:", john.computeSalary(8, 2));
+
 john.updateDepartment("Finance");
 console.log(john.department);

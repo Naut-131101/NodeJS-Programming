@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"pnpm tsc --watch\" \"node --watch ./dist/index.js\""
   },
   "keywords": [],
   "author": "",
@@ -23,8 +24,5 @@
   "devDependencies": {
     "concurrently": "^10.0.3",
     "typescript": "^6.0.3"
-  },
-  "scripts": {
-    "dev": "concurrently \"pnpm tsc --watch\" \"node --watch ./dist/index.js\""
   }
 }

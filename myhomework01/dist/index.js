@@ -41,4 +41,3 @@ console.log("Salary OT:", john.computeSalary(8, 2));
 john.updateDepartment("Finance");
 console.log(john.department);
 export {};
-//# sourceMappingURL=index.js.map
